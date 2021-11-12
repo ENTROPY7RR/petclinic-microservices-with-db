@@ -1,4 +1,5 @@
-hosts: role_grand_master
+---
+- hosts: role_grand_master
   tasks:
   - name: initialize docker swarm
     shell: docker swarm init
