@@ -29,7 +29,7 @@ pipeline {
         stage('Package Application') {
             steps {
                 echo 'Packaging the app into jars with maven'
-                sh ". ./jenkins/package-with-maven-container.sh"
+                sh ". ./Jenkins/package-with-maven-container.sh"
             }
         }
         stage('Prepare Tags for Docker Images') {
@@ -60,14 +60,14 @@ pipeline {
         stage('Build App Docker Images') {
             steps {
                 echo 'Building App Dev Images'
-                sh ". ./jenkins/build-dev-docker-images-for-ecr.sh"
+                sh ". ./Jenkins/build-dev-docker-images-for-ecr.sh"
                 sh 'docker image ls'
             }
         }
         stage('Push Images to ECR Repo') {
             steps {
                 echo "Pushing ${APP_NAME} App Images to ECR Repo"
-                sh ". ./jenkins/push-dev-docker-images-to-ecr.sh"
+                sh ". ./Jenkins/push-dev-docker-images-to-ecr.sh"
             }
         }
         stage('Create Key Pair for Ansible') {
