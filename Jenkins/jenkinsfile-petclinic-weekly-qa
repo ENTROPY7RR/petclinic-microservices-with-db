@@ -47,14 +47,14 @@ pipeline {
         stage('Build App Docker Images') {
             steps {
                 echo 'Building App Dev Images'
-                sh ". ./jenkins/build-qa-docker-images-for-ecr.sh"
+                sh ". ./Jenkins/build-qa-docker-images-for-ecr.sh"
                 sh 'docker image ls'
             }
         }
         stage('Push Images to ECR Repo') {
             steps {
                 echo "Pushing ${APP_NAME} App Images to ECR Repo"
-                sh ". ./jenkins/push-qa-docker-images-to-ecr.sh"
+                sh ". ./Jenkins/push-qa-docker-images-to-ecr.sh"
             }
         }
         stage('Deploy App on Docker Swarm'){
